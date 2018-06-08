@@ -25,6 +25,7 @@ public class Distribute_C02 {
         Channel channel = connection.createChannel();
         //声明队列，主要为了防止消息接收者先运行此程序，队列还不存在时创建队列。
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+
         System.out.println("Waiting for messages. To exit press CTRL+C");
         //创建队列消费者
         QueueingConsumer consumer = new QueueingConsumer(channel);
@@ -36,7 +37,7 @@ public class Distribute_C02 {
             QueueingConsumer.Delivery delivery = consumer.nextDelivery();
             String message = new String(delivery.getBody());
             System.out.println("curtime:"+System.currentTimeMillis()+ "Received '" + message + "'");
-            Thread.sleep(2000);//消费者2 睡20秒
+            Thread.sleep(10000);//消费者2 睡10秒
         }
 
     }
